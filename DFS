@@ -1,0 +1,36 @@
+class Node(object):
+  def __init__(self,name):
+    self.name = name
+    self.adjancylist=[]
+    self.visited= False
+
+class DFS(object):
+  def dfsfunction(self,startingnode):
+    stack = []
+    startingnode.visited= True
+    stack.append(startingnode)
+    while stack:
+      actualnode = stack.pop()
+      print("%s" % actualnode.name)
+      for v in actualnode.adjancylist:
+        if not v.visited:
+          v.visited=True
+          stack.append(v)
+
+node = Node("A")
+nodeone = Node("B")
+nodetwo = Node("C")
+nodethree = Node("D")
+nodefour = Node("E")
+node.adjancylist.append(nodeone)
+node.adjancylist.append(nodetwo)
+nodetwo.adjancylist.append(nodethree)
+nodethree.adjancylist.append(nodefour)
+
+dfs= DFS()
+dfs.dfsfunction(node)
+
+
+
+
+
