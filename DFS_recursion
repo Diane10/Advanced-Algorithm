@@ -1,0 +1,32 @@
+class Node(object):
+  def __init__(self,name):
+    self.name = name
+    self.visited = True
+    self.adjancylist=[]
+    
+class DFS(object):
+  def dfsfunction(self,node):
+    node.visited= True
+    print("%s" % node.name)
+    for v in node.adjancylist:
+      if not v.visited:
+        self.dfsfunction(v)
+    
+
+node = Node("A")
+nodeone = Node("B")
+nodetwo = Node("C")
+nodethree = Node("D")
+nodefour = Node("E")
+node.adjancylist.append(nodeone)
+node.adjancylist.append(nodetwo)
+nodetwo.adjancylist.append(nodethree)
+nodethree.adjancylist.append(nodefour)
+
+dfs= DFS()
+dfs.dfsfunction(node)
+
+
+
+
+
