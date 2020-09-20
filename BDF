@@ -1,0 +1,30 @@
+class Node(object):
+  def __init__(self, name):
+    self.name= name
+    self.adjencylist= []
+    self.visited= False
+class BFS(object):
+  def bdfclass(self,startingnode):
+    queue = []
+    startingnode.visited= True
+    queue.append(startingnode)
+    while queue:
+      actualNode = queue.pop(0)
+      print('%s'% actualNode.name)
+      for v in actualNode.adjencylist:
+        if not v.visited:
+          queue.append(v)
+          v.visited=True
+
+node = Node("A")
+nodeone = Node("B")
+nodetwo = Node("C")
+nodethree = Node("D")
+nodefour = Node("E")
+node.adjencylist.append(nodeone)
+node.adjencylist.append(nodetwo)
+nodetwo.adjencylist.append(nodethree)
+nodethree.adjencylist.append(nodefour)
+
+bdf= BFS()
+bdf.bdfclass(node)
