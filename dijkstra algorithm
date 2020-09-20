@@ -1,0 +1,23 @@
+import sys
+import heapq
+
+class Edge(object):
+  def __init__(self,weight, startvertex,targetvertex):
+    self.weight = weight
+    self.startvertex= startvertex
+    self.targetvertex= targetvertex
+class Node(object):
+    def _init_(self,name):
+        self.name=name
+        self.visited= False
+        self.adjencylist=[]
+        self.predeccessor= None
+        self.mindistance= sys.maxsize
+    
+    def _cmp_(self,othervertex):
+      return self._cmp_(self.mindistance,othervertex.mindistance)
+    
+    def _lt_(self,other):
+      selfpriority= self.mindistance
+      othepriority = other.mindistance
+      return selfpriority < othepriority
