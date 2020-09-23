@@ -1,0 +1,22 @@
+import operator
+n= int(input("Enter the number of objects:"))
+profit = list(map(int,input("Enter your profit values:").split()))
+weight = list(map(int,input("Enter your weight values:").split()))
+m= int(input("Enter the maximum capacity bag:"))
+l=[]
+for i in range(n):
+    l.append([profit[i],weight[i],profit[i]*1.0/weight[i]])
+
+l=sorted(l,reverse=True,key= operator.itemgetter(2))
+max_profit=0
+fractional_object=0
+for i in range(n):
+    if m>0 and l[i][1]<m:
+        m-=l[i][1]
+        max_profit+=l[i][0]
+    else:
+        fractional_object=i
+if m>0:
+    max_profit+=m*(l[fractional_object][0]/(l[fractional_object][1]))
+
+print(max_profit)
