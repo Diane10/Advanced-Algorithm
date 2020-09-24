@@ -1,13 +1,23 @@
 import operator
+#Receiving input from the user
 n= int(input("Enter the number of objects:"))
 profit = list(map(int,input("Enter your profit values:").split()))
 weight = list(map(int,input("Enter your weight values:").split()))
 m= int(input("Enter the maximum capacity bag:"))
+print('==========================================')
+print('Calculate the ratio(profit/weight) for each item')
+#c
+
 l=[]
 for i in range(n):
     l.append([profit[i],weight[i],profit[i]*1.0/weight[i]])
+    
+    print(profit[i]*1.0/weight[i])
 
 l=sorted(l,reverse=True,key= operator.itemgetter(2))
+print('============================================')
+print('Sort the item based on ratio of (profit/weight)')
+print(l)
 max_profit=0
 fractional_object=0
 for i in range(n):
@@ -18,5 +28,6 @@ for i in range(n):
         fractional_object=i
 if m>0:
     max_profit+=m*(l[fractional_object][0]/(l[fractional_object][1]))
-
+print('============================================')
+print("Maximum profit:")
 print(max_profit)
