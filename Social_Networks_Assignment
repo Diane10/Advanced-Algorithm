@@ -1,0 +1,53 @@
+#social network bfs algorithm
+from collections import deque
+graph = {}
+queries = []
+def accept_values():
+    #accept number of vertices and edges
+    vertex_edge = [int(i) for  i in input().strip().split(" ")]
+    #accept the edges for the undirected graph
+    for i in range(vertex_edge[1]):
+        edge = [int(i) for i in input().strip().split(" ")]
+        try:
+            graph[edge[0]].append(edge[1])
+        except:
+            graph[edge[0]] = [edge[1]]
+        try:
+            graph[edge[1]].append(edge[0])
+        except:
+            graph[edge[1]] = [edge[0]]
+    #accepting the number of queries and the queries themselves
+    number_of_queries = int(input())
+    for i in range(number_of_queries):
+        queries.append([int(i) for i in input().strip().split(" ")])
+    #applying bfs on the (source, required distance) queries
+    for query in queries:
+        bfs(query)
+
+def bfs(query):
+    counter = 0
+    q = deque()
+    q.append(query[0])
+    visited = {query[0] : True}
+    distance = {query[0] : 0}
+    while q:
+        popped = q.popleft()
+        for neighbour in graph[popped]:
+            if neighbour not in visited:
+                visited[neighbour] = True
+                #stop looking further because we have all the nodes at the required distance, i think
+                if distance[popped] + 1 > query[1]:
+                    for key in distance:
+                        if distance[key] == query[1]:
+                          counter +=1
+                    print(counter)
+                    return
+                #keep going until we reach the required query distance
+                else:
+                    distance[neighbour] = distance[popped] + 1
+                    q.append(neighbour)
+    #prints 0 if there are no such nodes
+    print(counter)
+#calling function to accept values as per required format
+accept_values()
+
